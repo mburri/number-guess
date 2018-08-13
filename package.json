@@ -1,0 +1,25 @@
+{
+  "name": "guess-the-number",
+  "version": "1.0.0",
+  "description": "This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mburri/number-guess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mburri/number-guess/issues"
+  },
+  "homepage": "https://github.com/mburri/number-guess#readme",
+  "dependencies": {
+    "gh-pages": "^1.2.0"
+  }
+}
