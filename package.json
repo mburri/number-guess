@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "deploy": "elm-app build && gh-pages -d build/"
+    "deploy": "elm-app build && gh-pages -d build"
   },
   "repository": {
     "type": "git",
