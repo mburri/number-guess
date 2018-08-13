@@ -1,15 +1,57 @@
 body {
-  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Short Stack', cursive;
   margin: 0;
   text-align: center;
-  color: #293c4b;
+  background-color: rgb(71, 71, 71);
+  font-size: 12px;
 }
 
-h1 {
-  font-size: 30px;
+.title {
+  font-size: 3rem;
+  color: rgb(230, 216, 34);
+  text-shadow: 0.1rem 0.1rem 0.2rem rgb(10, 10, 10),
+    -0.1rem -0.1rem 0.2rem rgb(10, 10, 10), 0.3rem 0.3rem 0.5rem rgb(30, 30, 30);
 }
 
-img {
-  margin: 20px 0;
-  max-width: 200px;
+.text {
+  font-size: 1.5rem;
+  color: rgb(230, 216, 34);
+}
+
+.guess {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.guess input {
+  font-size: 2rem;
+  width: 10%;
+  font-family: 'Short Stack', cursive;
+  text-align: center;
+}
+
+button {
+  font-size: 2rem;
+  font-family: 'Short Stack', cursive;
+}
+
+.error {
+  font-size: 1.5rem;
+  color: rgb(180, 1, 1);
+}
+
+.wrong {
+  font-size: 1.5rem;
+  color: rgb(180, 168, 1);
+}
+
+.correct {
+  font-size: 2rem;
+  color: rgb(230, 216, 34);
+  text-shadow: 0.1rem 0.1rem 0.2rem rgb(10, 10, 10),
+    -0.1rem -0.1rem 0.2rem rgb(10, 10, 10), 0.3rem 0.3rem 0.5rem rgb(30, 30, 30);
+}
+
+.correct button {
+  margin-top: 1rem;
 }
