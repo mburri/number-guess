@@ -12,7 +12,7 @@ import Html
         , button
         , form
         )
-import Html.Attributes exposing (src, value, class)
+import Html.Attributes exposing (src, value, class, type_)
 import Html.Events exposing (onInput, onClick, onSubmit)
 import Random
 
@@ -72,7 +72,9 @@ update msg model =
                 g =
                     Result.withDefault -1 (String.toInt model.guess)
             in
-                ( { model | guessed = Guessed g }, Cmd.none )
+                ( { model | guessed = Guessed g }
+                , Cmd.none
+                )
 
 
 
@@ -89,7 +91,8 @@ view model =
             [ form [ onSubmit Guess ]
                 [ label []
                     [ input
-                        [ onInput ChangeGuess
+                        [ type_ "number"
+                        , onInput ChangeGuess
                         , value model.guess
                         ]
                         []
