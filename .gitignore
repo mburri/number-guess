@@ -1,4 +1,6 @@
 # Distribution
+dist/
+bin/
 build/
 
 # elm-package generated files

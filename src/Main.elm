@@ -1,20 +1,22 @@
-module Main exposing (..)
+module Main exposing (Guess(..), Model, Msg(..), generateNumber, init, main, update, view, viewError, viewHint, viewMessage)
 
+import Browser
 import Html
     exposing
         ( Html
-        , text
+        , button
         , div
+        , form
         , h1
         , img
         , input
         , label
-        , button
-        , form
+        , text
         )
-import Html.Attributes exposing (src, value, class, type_)
-import Html.Events exposing (onInput, onClick, onSubmit)
+import Html.Attributes exposing (class, src, type_, value)
+import Html.Events exposing (onClick, onInput, onSubmit)
 import Random
+
 
 
 ---- MODEL ----
@@ -32,12 +34,11 @@ type alias Model =
     }
 
 
-init : Int -> Model
-init number =
-    { number = number
-    , guess = ""
-    , guessed = NotYet
-    }
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( initialModel 0
+    , generateNumber
+    )
 
 
 generateNumber =
@@ -55,11 +56,18 @@ type Msg
     | Again
 
 
+initialModel number =
+    { number = number
+    , guess = ""
+    , guessed = NotYet
+    }
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         New number ->
-            ( init number, Cmd.none )
+            ( initialModel number, Cmd.none )
 
         Again ->
             ( model, generateNumber )
@@ -70,11 +78,11 @@ update msg model =
         Guess ->
             let
                 g =
-                    Result.withDefault -1 (String.toInt model.guess)
+                    String.toInt model.guess |> Maybe.withDefault -1
             in
-                ( { model | guessed = Guessed g }
-                , Cmd.none
-                )
+            ( { model | guessed = Guessed g }
+            , Cmd.none
+            )
 
 
 
@@ -109,13 +117,14 @@ viewError : Model -> Html msg
 viewError model =
     if String.length model.guess > 0 then
         case String.toInt model.guess of
-            Ok g ->
+            Just g ->
                 text ""
 
-            Result.Err _ ->
+            Nothing ->
                 div [ class "error" ]
                     [ (model.guess ++ " ist keine Zahl!") |> text
                     ]
+
     else
         text ""
 
@@ -134,11 +143,13 @@ viewMessage : Int -> Int -> Html Msg
 viewMessage guessed target =
     if guessed < target then
         div [ class "wrong" ] [ text "Die gesuchte Zahl ist grösser!" ]
+
     else if guessed > target then
         div [ class "wrong" ] [ text "Die gesuchte Zahl ist kleiner!" ]
+
     else
         div [ class "correct" ]
-            [ text ("Gratuliere! Die gesuchte Zahl war " ++ (toString target))
+            [ text ("Gratuliere! Die gesuchte Zahl war " ++ String.fromInt target)
             , div [] [ button [ onClick Again ] [ text "Nochmal!" ] ]
             ]
 
@@ -147,11 +158,11 @@ viewMessage guessed target =
 ---- PROGRAM ----
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
+    Browser.element
         { view = view
-        , init = ( init 0, generateNumber )
+        , init = init
         , update = update
         , subscriptions = always Sub.none
         }

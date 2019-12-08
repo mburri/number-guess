@@ -1,13 +1,13 @@
 {
   "name": "guess-the-number",
   "version": "1.0.0",
-  "description": "This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).",
+  "description": "A simple number guessing game...",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "deploy": "elm-app build && gh-pages -d build"
+    "deploy": "make prod && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/mburri/number-guess#readme",
   "devDependencies": {
-    "create-elm-app": "^1.10.4",
-    "gh-pages": "^1.2.0"
+    "gh-pages": "2.1.1"
   }
 }
